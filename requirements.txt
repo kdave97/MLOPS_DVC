@@ -3,3 +3,5 @@ dvc[drive]
 sklearn
 pandas
 click
+numpy
+joblib
