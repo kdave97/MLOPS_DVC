@@ -13,7 +13,7 @@ jobs:
         run: |
           # Your ML workflow goes here
           pip install -r requirements.txt
-          dvc pull
+          dvc pull data 
           dvc repro
           python src/get_data.py
           python src/load_data.py
