@@ -27,6 +27,6 @@ stages:
     - data/processed/winequality_test.csv
     outs:
     - saved_models/model.joblib
-    - report/scores.json
+ 
     
 
