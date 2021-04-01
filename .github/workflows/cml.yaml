@@ -22,3 +22,4 @@ jobs:
           # Write your CML report
           echo "## Model Metrics" >> report.md
           cat report/scores.json >> report.md
+          cml-send-comment report.md
