@@ -11,9 +11,9 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
         run: |
-          # Your ML workflow goes here
+          # Your ML workflow goes below
           pip install -r requirements.txt
-          dvc pull
+          dvc pull 
           dvc repro
           python src/get_data.py
           python src/load_data.py
