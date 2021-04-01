@@ -1,0 +1,25 @@
+name: MLOPS-DVC
+on: [push]
+jobs:
+  run:
+    runs-on: [ubuntu-latest]
+    container: docker://dvcorg/cml-py3:latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: cml_run
+        env:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
+        run: |
+          # Your ML workflow goes below
+          pip install -r requirements.txt
+          dvc pull 
+          dvc repro
+          python src/get_data.py
+          python src/load_data.py
+          python src/split_data.py
+          python src/train_evaluate.py
+          # Write your CML report
+          echo "## Model Metrics" >> report.md
+          cat report/scores.json >> report.md
+          cml-send-comment report.md
